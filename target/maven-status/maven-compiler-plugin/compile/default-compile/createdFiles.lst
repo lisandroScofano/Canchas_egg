@@ -1,0 +1,12 @@
+integrador/canchafutbol/repository/PersonaRepository.class
+integrador/canchafutbol/controladores/ControladorCancha.class
+integrador/canchafutbol/Ejecutable.class
+integrador/canchafutbol/controladores/ControladorEquipo.class
+integrador/canchafutbol/repository/ReservaRepository.class
+integrador/canchafutbol/repository/CanchaRepository.class
+integrador/canchafutbol/controladores/ControladorReserva.class
+integrador/canchafutbol/servicios/ServicioPersona.class
+integrador/canchafutbol/controladores/ClienteControlador.class
+integrador/canchafutbol/RespuestasTeoricas.class
+integrador/canchafutbol/controladores/ControladorPersona.class
+integrador/canchafutbol/repository/EquipoRepository.class

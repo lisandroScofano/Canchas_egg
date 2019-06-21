@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Canchas</title>
+        <link href="/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="/navbar-top-fixed.css" rel="stylesheet">
+        <link href="/bootstrap.css" rel="stylesheet">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <a class="navbar-brand" href="/">APP Canchas EGG</a>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/reservas/listado/">Reservas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/canchas/listado/">Canchas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/equipos/listado/">Equipos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/personas/listado/">Jugadores</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container">
+            <h1 class="text-success">Listado de Cancha</h1>
+
+            <h3>
+                <a th:href="@{/canchas/inicio}">Crear Cancha</a>
+            </h3>
+
+            <table class="table table-striped">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>		
+                    <th>Acciones</th>
+                </tr>
+                <tr th:each="cancha : ${canchas}">
+                    <td th:text="${cancha.idcancha}"></td>
+                    <td th:text="${cancha.nombre}"></td>
+                    <td>
+                        <a th:href="@{/canchas/inicio(idcancha=__${cancha.idcancha}__)}">Ver</a>
+                        <span>   -    </span>
+                        <a th:href="@{/canchas/eliminar(idcancha=__${cancha.idcancha}__)}">Eliminar</a>
+
+                    </td>
+                </tr>
+            </table>
+            <a th:href="@{/}">Volver al Inicio</a>
+        </div>
+    </body>
+</html>

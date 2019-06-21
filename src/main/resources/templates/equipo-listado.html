@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Equipos</title>
+        <style type="text/css">
+            select{
+                width: 200px;
+                height: 350px;
+            }
+        </style>
+        <link href="/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="/navbar-top-fixed.css" rel="stylesheet">
+        <link href="/bootstrap.css" rel="stylesheet">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <a class="navbar-brand" href="/">APP Canchas EGG</a>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/reservas/listado/">Reservas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/canchas/listado/">Canchas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/equipos/listado/">Equipos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/personas/listado/">Jugadores</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container"> 
+            <h1 class="text-success">Listado de Equipo</h1>
+
+            <h3>
+                <a th:href="@{/equipos/inicio}">Crear Equipo</a>
+            </h3>
+            <table class="table table-striped">	
+                <tr>
+                    <th>
+                        ID
+                    </th>
+                    <th>
+                        Nombre
+                    </th>
+                    <th>
+                        Acciones
+                    </th>
+                </tr>
+                <tr th:each="equipo : ${equipos}">
+                    <td th:text="${equipo.idequipo}"></td>
+                    <td th:text="${equipo.nombre}"></td>
+                    <td>
+                        <a th:href="@{/equipos/inicio(idequipo=__${equipo.idequipo}__)}">Ver</a>
+                        <span>   -    </span>
+                        <a th:href="@{/equipos/eliminar(idequipo=__${equipo.idequipo}__)}">Eliminar</a>
+
+                    </td>
+                </tr>
+
+            </table>
+            <a th:href="@{/}">Volver al Inicio</a>
+        </div>
+    </body>
+</html>

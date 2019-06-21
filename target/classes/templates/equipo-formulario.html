@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Equipos</title>
+        <style type="text/css">
+            select{
+                width: 200px;
+                height: 350px;
+            }
+        </style>
+        <link href="/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="/navbar-top-fixed.css" rel="stylesheet">
+        <link rel="stylesheet" href="/style.css">
+        <link href="/bootstrap.css" rel="stylesheet">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <a class="navbar-brand" href="/">APP Canchas EGG</a>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/reservas/listado/">Reservas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/canchas/listado/">Canchas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/equipos/listado/">Equipos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/personas/listado/">Jugadores</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container">
+            <h1 class="text-success">Creación de Equipo</h1>
+
+            <h3><span th:if="${mensaje != null}" th:text="${mensaje}" class="text-success"></span></h3>
+
+            <form th:action="@{/equipos/guardar}" method="POST" th:object="${equipo}">
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">ID</label>
+                    <div class="col-sm-6">
+                        <input type="text" style="width: 100%" th:field="*{idequipo}" th:value="*{idequipo}" readonly="readonly"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Nombre</label>
+                    <div class="col-sm-6">
+                        <input type="text" style="width: 100%" th:field="*{nombre}" th:value="*{nombre}"/>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <div class="subject-info-box-1">
+                        <h2>Listado de personas</h2>
+                        <select multiple="multiple" id='lstBox1' class="form-control">
+                            <option th:each="p : ${personas}" th:value="${p.dni}" th:text="${p.nombre}"></option>
+                        </select>
+                    </div>
+                    <div class="subject-info-arrows text-center">
+                        <h2>&nbsp</h2>
+                        <input type="button" id="btnAllRight" value=">>" class="btn btn-default" /><br />
+                        <input type="button" id="btnRight" value=">" class="btn btn-default" /><br />
+                        <input type="button" id="btnLeft" value="<" class="btn btn-default" /><br />
+                        <input type="button" id="btnAllLeft" value="<<" class="btn btn-default" />
+                    </div>
+                    <div class="subject-info-box-2">
+                        <h2>Listado de Jugadores del equipo</h2>
+                        <select multiple="multiple" id='lstBox2' class="form-control" th:value="*{seleccionados}" th:field="*{seleccionados}">
+                            <option th:each="j : ${jugadores}" th:value="${j.dni}" th:text="${j.nombre}"></option>
+                        </select>
+                    </div>
+                </div>
+                <br/>
+                <input type="submit" value="Guardar" id="guardar" name="guardar" class="btn btn-primary"/>
+            </form>
+            <br/>
+            <a th:href="@{/equipos/listado}">Volver al Listado</a>
+        </div>
+    </body>
+    <script src="/jquery-1.10.2.js"></script>
+    <script src="/bootstrap.js"></script>
+    <script src="/jquery.selectlistactions.js"></script>
+    <script src="/multiple.js"></script>
+    <script>
+        $('#guardar').click(function () {
+            $('#lstBox2 option').prop('selected', true);
+        });
+    </script>
+
+</html>

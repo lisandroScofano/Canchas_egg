@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Reservas</title>
+        <link href="/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="/navbar-top-fixed.css" rel="stylesheet">
+        <link href="/bootstrap.css" rel="stylesheet">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <a class="navbar-brand" href="/">APP Canchas EGG</a>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/reservas/listado/">Reservas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/canchas/listado/">Canchas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/equipos/listado/">Equipos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/personas/listado/">Jugadores</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container"> 
+            <h1 class="text-success">Listado de Reservas</h1>
+            <h3>
+                <a th:href="@{/reservas/inicio}">Cargar Reservas</a>
+            </h3>
+            <table class="table table-striped">
+                <tr>
+                    <th>ID</th>
+                    <th>Fecha</th>		
+                    <th>Equipo 1</th>		
+                    <th>Equipo 2</th>
+                    <th>Cancha</th>
+                    <th>Acciones</th>
+                </tr>
+                <tr th:each="reserva : ${reservas}">
+                    <td th:text="${reserva.idreserva}"></td>
+                    <td th:text="${#calendars.format(reserva.fechaReserva, 'dd MMMM yyyy')}"></td>
+                    <td th:text="${reserva.equipo1.nombre}"></td>
+                    <td th:text="${reserva.equipo2.nombre}"></td>
+                    <td th:text="${reserva.cancha.nombre}"></td>
+                    <td>
+                        <a th:href="@{/reservas/inicio(id=__${reserva.idreserva}__)}">Ver</a>
+                        <span>   -    </span>
+                        <a th:href="@{/reservas/eliminar(idreserva=__${reserva.idreserva}__)}">Eliminar</a>
+
+                    </td>
+                </tr>
+            </table>
+            <a th:href="@{/}">Volver al Inicio</a>
+        </div>
+    </body>
+</html>
