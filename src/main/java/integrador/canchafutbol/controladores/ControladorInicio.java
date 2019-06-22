@@ -6,7 +6,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/Integrador-0.0.1-SNAPSHOT/")
 public class ControladorInicio {
     public ModelAndView listado() {
         ModelAndView modelo = new ModelAndView();
